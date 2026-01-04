@@ -1,10 +1,9 @@
-# Calame
+calame
+=======
 
 Calame is a small thought-experiment machine to play and experiment reflexive and interactive systems.
 
-```markdown
 ![Calame REPL example](docs/repl.png)
-```
 
 It provides a small set of concepts to describe:
 - a *space*,
