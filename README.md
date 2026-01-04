@@ -31,8 +31,6 @@ A small `calame` executable is shipped with the repository.
 
 It implements a REPL over a Unicode text and a cursor using Calame's core abstractions.
 
-Example session : 
-
 ## Running the example
 
 With opam and dune installed:
