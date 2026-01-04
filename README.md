@@ -20,13 +20,11 @@ are expected to live in separate projects, or on top of it.
 
 At its core, Calame revolves a single structure: machine.ml
 
-  +------------------+
   |     Machine      |
   |------------------|
   | space : x        |
   | obs   : x -> a   |
   | stab  : x -> x   |
-  +------------------+
 
 ## Example: small textual REPL
 
