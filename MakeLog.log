@@ -17,9 +17,9 @@
   >> The OCaml toplevel, version 5.2.1
 --- End VérificationOcaml
 
-> opam install dune
-
 --- VérificationDune
+  > opam install dune
+
   > which dune
   >> [something]/.opam/calame/bin/dune
 
@@ -32,36 +32,15 @@
   >> Success: initialized project component named calame
 
   ### EDIT dune-project
-  (lang dune 3.20)
+  +(lang dune 3.20)
 
-  (name calame)
+  +(name calame)
 
-  (generate_opam_files true)
-
-  (package
-   (name calame)
-   (synopsis "Small parametric machine for slow experimentation")
-   (description
-    "Calame, Roseau taillé dont les Anciens se servaient pour écrire.
-     Calame, un état, une transition et une observation. 
-     Calame, pensée pour l'expérimentation sur les systèmes réflexifs.")
-   (depends
-    (ocaml (>= 5.0))))
+  +(generate_opam_files true)
   ### End EDIT
 --- End DéclarationProjetDune
 
 --- VérificationInitialisationProjet
-  > opam install . --deps-only
-
-  [WARNING] Failed checks on calame package definition from source at
-	    file://[something]/calame:
-      error 23: Missing field 'maintainer'
-    warning 25: Missing field 'authors'
-    warning 35: Missing field 'homepage'
-    warning 36: Missing field 'bug-reports'
-    warning 68: Missing field 'license'
-  Nothing to do.
-
   > dune build
   >>
   > dune exec bin/main.exe
@@ -69,6 +48,7 @@
 --- End VérificationInitialisationProjet
 
 --- ÉlagageArbreProjet
+  > dune clean
   > rm -rf bin
   > rm -rf test
   > tree -L 3
@@ -86,16 +66,85 @@
   > git init
   >> Initialized empty Git repository in [something]/calame/.git/
   > git status
-  >> On branch main
+  >> [...]
 
-    No commits yet
+  ### EDIT .gitignore
+  +_build/
+  +.opam-switch/
+  +*.install
+  ### End EDIT
 
-    Untracked files:
-      (use "git add <file>..." to include in what will be committed)
-	    MakeLog.log
-	    calame.opam
-	    dune-project
-	    lib/
+  > git add .
+  > git commit -m "Initial Calame skeleton (environement, opam, Makelog)"
+--- End InitialisationLocaleGit
 
-    nothing added to commit but untracked files present (use "git add" to track)
+** 2. Construction
 
+--- DéclarationFichiersLibrairie
+  > touch lib/obs.mli
+  > touch lib/stab.mli
+  > touch lib/machine.mli
+  > touch lib/machine.ml
+  > mkdir bin
+  > touch bin/dune
+  > touch bin/calame.ml
+--- End DéclarationFichiersLibrairie
+
+--- ÉcritureInterfaceObs
+  ### EDIT lib/obs.mli
+  +(** lib/obs.mli *)
+  +[...]
+  ### End EDIT
+--- End ÉcritureInterfaceObs
+
+--- ÉcritureInterfaceStab
+  ### EDIT lib/stab.mli
+  +(** lib/stab.mli *)
+  +[...]
+  ### End EDIT
+--- End ÉcritureInterfaceStab
+
+--- ÉcritureInterfaceMachine
+  ### EDIT lib/machine.mli
+  +(** lib/machine.mli *)
+  +[...] 
+  ### End EDIT
+--- End ÉcritureInterfaceMachine
+
+--- ÉcritureImplémentationMachine
+  ### EDIT lib/machine.ml
+  +(** lib/machine.ml *)
+  +[...] 
+  ### End EDIT
+--- End ÉcritureImplémentationMachine
+
+--- CompilationLibrairie
+  > dune build
+--- End CompilationLibrairie
+
+** 3. Terminaison et mise en Package Opam
+
+--- RédactionExempleOpérationnel
+  > mkdir bin
+  > touch bin/dune
+  > touch bin/calame
+
+  Action : Implémenter et écrire une instanciation facile de Calame
+--- End RédactionExempleOpérationnel
+
+--- Rédaction README.md
+  > touch README.md
+  ### EDIT README.md
+--- End Rédaction README.md
+
+--- AjoutRépoDistant
+  > git remote add origin https://github.com/AugustinRochereau/calame.git
+--- End AjoutRépoDistant
+
+--- VersionnementRelease
+  > git add .
+  > git commit -m "Calame v0.1.0 - release"
+  > git tag v0.1.0
+  > git push
+  > git push --tags
+--- End VersionnementRelease

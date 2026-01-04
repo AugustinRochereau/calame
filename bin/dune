@@ -1,0 +1,4 @@
+(executable
+ (name calame)
+ (public_name calame)
+ (libraries calame))
