@@ -1,3 +1,4 @@
 (library
  (name calame)
+ (public_name calame)
  (modules_without_implementation obs))
